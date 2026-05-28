@@ -70,7 +70,7 @@ optimal_mean = all_returns["Optimal"].mean()
 print(f"  Optimal policy mean : {optimal_mean:.4f}")
 print(f"  Gap                 : {optimal_mean - threshold_means[best_u]:.4f}")
 
-# Histogram figure — part (c)
+# Histogram
 fig, axes = plt.subplots(1, 3, figsize=(13, 4), sharey=True)
 plot_keys = ["Random (p=1/T)", f"Threshold(u_min={best_u})", "Optimal"]
 colors = ["steelblue", "darkorange", "seagreen"]
@@ -97,13 +97,11 @@ plt.close()
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Part (d) — robustness to noise
+# Part (d)
 # ──────────────────────────────────────────────────────────────────────────────
 
 sigmas = [0.0, 0.5, 1.0, 2.0]
-print("\n" + "=" * 65)
-print(f"Part (d) — noise robustness sweep σ ∈ {sigmas}")
-print("=" * 65)
+print(f"Part (d) — noise robustness sweep sig in {sigmas}")
 
 policies_d = {
     "Random": RandomPolicy(T),
@@ -120,23 +118,4 @@ for sigma in sigmas:
         mean, se, _ = report(name, returns, T)
         noise_results[name].append(mean)
 
-# Line plot — part (d)
-fig, ax = plt.subplots(figsize=(7, 4))
-markers = ["o", "s", "^"]
-colors_d = ["steelblue", "darkorange", "seagreen"]
-
-for (name, means), marker, color in zip(noise_results.items(), markers, colors_d):
-    ax.plot(sigmas, means, marker=marker, label=name, color=color, linewidth=2)
-
-ax.set_xlabel("Noise std σ", fontsize=11)
-ax.set_ylabel("Mean return", fontsize=11)
-ax.set_title(
-    f"Policy robustness to observation noise (T={T}, K={K}, N={N})", fontsize=11
-)
-ax.legend()
-ax.grid(alpha=0.3)
-plt.tight_layout()
-plt.savefig("/home/brevinh/School/RL/PSet0/Code/noise_robustness.png", dpi=150)
-plt.close()
-print("\n  Saved: returns_noise_robustness.png")
-print("\nDone.")
+print("\nWe Done.")

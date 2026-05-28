@@ -1,7 +1,3 @@
-"""
-sanity.py — runs one episode with a random policy and prints each step.
-"""
-
 from env import ApartmentEnv
 import numpy as np
 

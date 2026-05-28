@@ -16,7 +16,6 @@ class ApartmentEnv(gym.Env):
         self.action_space = spaces.Discrete(2)
 
         # Observation space: (t, U_t) where t in [1,T], U_t in [1,K]
-        # In noisy mode the observed quality is continuous, so we use Box.
         if noise_std == 0.0:
             self.observation_space = spaces.Dict(
                 {
